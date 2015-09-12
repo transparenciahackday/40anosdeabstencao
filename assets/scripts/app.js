@@ -246,32 +246,34 @@ var addResultados = function(ano){
   for(var partido in rObject.partidos){
     var resultado = rObject.partidos[partido];
     var percentagem = (resultado/rObject.votantes)*99;
-    $("#antes"+ano+"Graph").append( "<span class='partido "+partido.replace("/","").replace("-","")+"' style='width:"+percentagem+"%;'></span>" );
-    $("#antes"+ano+"Info").append( "<div>" + partido + ": "+ percentagem.toFixed(2)+"%</div>" );
+    var partidoCSS = partido.replace("/","").replace("-","");
+    $("#antes"+ano+"Graph").append( "<span class='partido "+partidoCSS+"' style='width:"+percentagem+"%;'></span>" );
+    $("#antes"+ano+"Info").append( "<div class='label " + partidoCSS + "'>" + partido + ": "+ percentagem.toFixed(2)+"%</div>" );
   }
   percentagem = (rObject.brancos/rObject.votantes)*100;
   $("#antes"+ano+"Graph").append( "<span class='partido brancos' style='width:"+percentagem+"%;'></span>" );
-  $("#antes"+ano+"Info").append( "<div>Brancos: "+ percentagem.toFixed(2)+"%</div>");
+  $("#antes"+ano+"Info").append( "<div class='label brancos'>Brancos: "+ percentagem.toFixed(2)+"%</div>");
   percentagem = (rObject.nulos/rObject.votantes)*100;
   $("#antes"+ano+"Graph").append( "<span class='partido nulos' style='width:"+percentagem+"%;'></span>" );
-  $("#antes"+ano+"Info").append( "<div>Nulos: "+ percentagem.toFixed(2)+"%</div>" );;
+  $("#antes"+ano+"Info").append( "<div class='label nulos'>Nulos: "+ percentagem.toFixed(2)+"%</div>" );;
 
   for(var partido in rObject.partidos){
     var resultado = rObject.partidos[partido];
     var percentagem = (resultado/rObject.total)*100;
-    $("#depois"+ano+"Graph").append( "<span class='partido "+partido.replace("/","").replace("-","")+"' style='width:"+percentagem+"%;'></span>" );
-    $("#depois"+ano+"Info").append( "<div>" + partido + ": "+ percentagem.toFixed(2)+"%</div>" );
+    var partidoCSS = partido.replace("/","").replace("-","");
+    $("#depois"+ano+"Graph").append( "<span class='partido "+partidoCSS+"' style='width:"+percentagem+"%;'></span>" );
+    $("#depois"+ano+"Info").append( "<div class='label " + partidoCSS + "'>" + partido + ": "+ percentagem.toFixed(2)+"%</div>" );
   }
   percentagem = (rObject.brancos/rObject.total)*100;
   $("#depois"+ano+"Graph").append( "<span class='partido brancos' style='width:"+percentagem+"%;'></span>" );
-  $("#depois"+ano+"Info").append( "<div>Brancos: "+ percentagem.toFixed(2)+"%</div>");
+  $("#depois"+ano+"Info").append( "<div class='label brancos'>Brancos: "+ percentagem.toFixed(2)+"%</div>");
   percentagem = (rObject.nulos/rObject.total)*100;
   $("#depois"+ano+"Graph").append( "<span class='partido nulos' style='width:"+percentagem+"%;'></span>" );
-  $("#depois"+ano+"Info").append( "<div>Nulos: "+ percentagem.toFixed(2)+"%</div>");
+  $("#depois"+ano+"Info").append( "<div class='label nulos'>Nulos: "+ percentagem.toFixed(2)+"%</div>");
 
   percentagem = (rObject.abstencao/rObject.total)*100;
   $("#depois"+ano+"Graph").append( "<span class='partido abstencao' style='width:"+percentagem+"%;'></span>" );
-  $("#depois"+ano+"Info").append( "<div>Abstenção: "+ percentagem.toFixed(2)+"%</div>" );
+  $("#depois"+ano+"Info").append( "<div class='label abstencao'>Abstenção: "+ percentagem.toFixed(2)+"%</div>" );
 };
 
 for(ano in resultados){
@@ -279,17 +281,17 @@ for(ano in resultados){
     <div class="row">\
       <div>\
           <div class="small-5 columns text-center">&nbsp;</div>\
-          <div class="small-2 columns text-center ano">'+ano+'</div>\
+          <div class="small-2 columns text-center label round anoLabel">'+ano+'</div>\
           <div class="small-5 columns text-center">&nbsp;</div>\
       </div>\
-      <div>\
-          <div class="small-6 columns text-right right-border" id="antes'+ano+'Graph"></div>\
-          <div class="small-6 columns text-left left-border" id="depois'+ano+'Graph"></div>\
+      <div class="">\
+          <div class="small-6 columns text-right right-border anoGraph" id="antes'+ano+'Graph"></div>\
+          <div class="small-6 columns text-left left-border anoGraph" id="depois'+ano+'Graph"></div>\
       </div>\
-      <div>\
-          <div class="small-6 columns text-center right-border" id="antes'+ano+'Info">\
+      <div class="">\
+          <div class="small-6 columns text-center right-border anoInfo" id="antes'+ano+'Info">\
           </div>\
-          <div class="small-6 columns text-center left-border" id="depois'+ano+'Info">\
+          <div class="small-6 columns text-center left-border anoInfo" id="depois'+ano+'Info">\
           </div>\
       </div>\
     </div>');
