@@ -1,0 +1,31 @@
+@import 'foundation/settings';
+@import 'foundation';
+
+.partido{
+  display: inline-block;
+  height: 30px;
+}
+
+.PSD{
+  background-color: orange;
+}
+
+.PS{
+  background-color: pink;
+}
+
+.CDU{
+  background-color: red;
+}
+
+.CDS{
+  background-color: cyan;
+}
+
+.BE{
+  background-color: darkred;
+}
+
+.abstencao{
+  background-color: #ccc;
+}
