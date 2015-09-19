@@ -1,5 +1,3 @@
-$(document).foundation();
-
 var resultados2011 = {
   total: 9624354,
   abstencao: 4039300,
@@ -247,7 +245,7 @@ var addResultados = function(ano){
     var resultado = rObject.partidos[partido];
     var percentagem = (resultado/rObject.votantes)*99;
     var partidoCSS = partido.replace("/","").replace("-","");
-    $("#antes"+ano+"Graph").append( "<span class='partido "+partidoCSS+"' style='width:"+percentagem+"%;'></span>" );
+    $("#antes"+ano+"Graph").append( "<span id='antes-"+ano+partidoCSS+"' data-tooltip aria-haspopup='true' title='" + partido + ": "+ percentagem.toFixed(2)+"%' class='has-tip partido "+partidoCSS+"' style='width:"+percentagem+"%;'></span>" );
     $("#antes"+ano+"Info").append( "<div class='label " + partidoCSS + "'>" + partido + ": "+ percentagem.toFixed(2)+"%</div>" );
   }
   percentagem = (rObject.brancos/rObject.votantes)*100;
@@ -261,8 +259,8 @@ var addResultados = function(ano){
     var resultado = rObject.partidos[partido];
     var percentagem = (resultado/rObject.total)*100;
     var partidoCSS = partido.replace("/","").replace("-","");
-    $("#depois"+ano+"Graph").append( "<span class='partido "+partidoCSS+"' style='width:"+percentagem+"%;'></span>" );
-    $("#depois"+ano+"Info").append( "<div class='label " + partidoCSS + "'>" + partido + ": "+ percentagem.toFixed(2)+"%</div>" );
+    $("#depois"+ano+"Graph").append( "<span id='depois-"+ano+partidoCSS+"' data-tooltip aria-haspopup='true' title='" + partido + ": "+ percentagem.toFixed(2)+"%' class='has-tip partido "+partidoCSS+"' style='width:"+percentagem+"%;'></span>" );
+    $("#depois"+ano+"Info").append( "<div class='label " + partidoCSS + "'>" + partido + ": "+ percentagem.toFixed(2)+"%???</div>" );
   }
   percentagem = (rObject.brancos/rObject.total)*100;
   $("#depois"+ano+"Graph").append( "<span class='partido brancos' style='width:"+percentagem+"%;'></span>" );
@@ -279,21 +277,25 @@ var addResultados = function(ano){
 for(ano in resultados){
   $("#container").append('\
     <div class="row">\
-      <div>\
+      <div class="hide">\
           <div class="small-5 columns text-center">&nbsp;</div>\
           <div class="small-2 columns text-center label round anoLabel">'+ano+'</div>\
           <div class="small-5 columns text-center">&nbsp;</div>\
       </div>\
-      <div class="">\
-          <div class="small-6 columns text-right right-border anoGraph" id="antes'+ano+'Graph"></div>\
-          <div class="small-6 columns text-left left-border anoGraph" id="depois'+ano+'Graph"></div>\
+      <div class="row">\
+          <div class="small-5 columns text-right right-border anoGraph" id="antes'+ano+'Graph"></div>\
+          <div class="small-1 columns text-center label round anoLabel"><span>'+ano+'</span></div>\
+          <div class="small-5 columns text-left left-border anoGraph" id="depois'+ano+'Graph"></div>\
       </div>\
-      <div class="">\
-          <div class="small-6 columns text-center right-border anoInfo" id="antes'+ano+'Info">\
+      <div class="hide">\
+          <div class="small-5 columns text-center right-border anoInfo" id="antes'+ano+'Info">\
           </div>\
-          <div class="small-6 columns text-center left-border anoInfo" id="depois'+ano+'Info">\
+          <div class="small-5 columns text-center left-border anoInfo" id="depois'+ano+'Info">\
           </div>\
       </div>\
     </div>');
   addResultados(ano);
 }
+
+$(document).foundation();
+

@@ -33,7 +33,8 @@ gulp.task('scripts',function(){
   gulp.src([
     paths.bower + '/jquery/dist/jquery.js',
     paths.bower + '/foundation/js/foundation.js',
-    paths.bower + '/foundation/js/foundation/foundation.magellan.js',
+    paths.bower + '/foundation/js/foundation/foundation.tooltip.js',
+      paths.bower + '/foundation/js/foundation/foundation.magellan.js',
     paths.assets + '/scripts/app.js'
   ])
   .pipe(concat('app.js'))
@@ -139,6 +140,7 @@ gulp.task('build',['buildFinalHTML'],function(){
     gulp.src([
       paths.bower + '/jquery/dist/jquery.js',
       paths.bower + '/foundation/js/foundation.js',
+      paths.bower + '/foundation/js/foundation/foundation.tooltip.js',
       paths.bower + '/foundation/js/foundation/foundation.magellan.js',
       paths.assets + '/scripts/app.js'
     ])
