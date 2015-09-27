@@ -1,3 +1,6 @@
+
+$(document).foundation();
+
 var resultados2011 = {
   total: 9624354,
   abstencao: 4039300,
@@ -249,10 +252,10 @@ var addResultados = function(ano){
     $("#antes"+ano+"Info").append( "<div class='label " + partidoCSS + "'>" + partido + ": "+ percentagem.toFixed(2)+"%</div>" );
   }
   percentagem = (rObject.brancos/rObject.votantes)*100;
-  $("#antes"+ano+"Graph").append( "<span class='partido brancos' style='width:"+percentagem+"%;'></span>" );
+  $("#antes"+ano+"Graph").append( "<span id='antes-"+ano+"brancos' data-tooltip aria-haspopup='true' title='Brancos: "+ percentagem.toFixed(2)+"%' class='has-tip partido brancos' style='width:"+percentagem+"%;'></span>" );
   $("#antes"+ano+"Info").append( "<div class='label brancos'>Brancos: "+ percentagem.toFixed(2)+"%</div>");
   percentagem = (rObject.nulos/rObject.votantes)*100;
-  $("#antes"+ano+"Graph").append( "<span class='partido nulos' style='width:"+percentagem+"%;'></span>" );
+  $("#antes"+ano+"Graph").append( "<span id='antes-"+ano+"nulos' data-tooltip aria-haspopup='true' title='Nulos: "+ percentagem.toFixed(2)+"%' class='has-tip partido nulos' style='width:"+percentagem+"%;'></span>" );
   $("#antes"+ano+"Info").append( "<div class='label nulos'>Nulos: "+ percentagem.toFixed(2)+"%</div>" );;
 
   for(var partido in rObject.partidos){
@@ -263,14 +266,14 @@ var addResultados = function(ano){
     $("#depois"+ano+"Info").append( "<div class='label " + partidoCSS + "'>" + partido + ": "+ percentagem.toFixed(2)+"%???</div>" );
   }
   percentagem = (rObject.brancos/rObject.total)*100;
-  $("#depois"+ano+"Graph").append( "<span class='partido brancos' style='width:"+percentagem+"%;'></span>" );
+  $("#depois"+ano+"Graph").append( "<span id='depois-"+ano+"brancos' data-tooltip aria-haspopup='true' title='Brancos: "+ percentagem.toFixed(2)+"%' class='has-tip partido brancos' style='width:"+percentagem+"%;'></span>" );
   $("#depois"+ano+"Info").append( "<div class='label brancos'>Brancos: "+ percentagem.toFixed(2)+"%</div>");
   percentagem = (rObject.nulos/rObject.total)*100;
-  $("#depois"+ano+"Graph").append( "<span class='partido nulos' style='width:"+percentagem+"%;'></span>" );
+  $("#depois"+ano+"Graph").append( "<span id='depois-"+ano+"nulos' data-tooltip aria-haspopup='true' title='Nulos: "+ percentagem.toFixed(2)+"%' class='has-tip partido nulos' style='width:"+percentagem+"%;'></span>" );
   $("#depois"+ano+"Info").append( "<div class='label nulos'>Nulos: "+ percentagem.toFixed(2)+"%</div>");
 
   percentagem = (rObject.abstencao/rObject.total)*100;
-  $("#depois"+ano+"Graph").append( "<span class='partido abstencao' style='width:"+percentagem+"%;'></span>" );
+  $("#depois"+ano+"Graph").append( "<span id='depois-"+ano+"abstencao' data-tooltip aria-haspopup='true' title='Abstenção: "+ percentagem.toFixed(2)+"%' class='has-tip partido abstencao' style='width:"+percentagem+"%;'></span>" );
   $("#depois"+ano+"Info").append( "<div class='label abstencao'>Abstenção: "+ percentagem.toFixed(2)+"%</div>" );
 };
 
@@ -297,5 +300,25 @@ for(ano in resultados){
   addResultados(ano);
 }
 
-$(document).foundation();
+$('.anoGraph').foundation({
+  tooltip: {
+    selector : '.has-tip',
+    additional_inheritable_classes : [],
+    tooltip_class : '.tooltip',
+    touch_close_text: 'tap to close',
+    disable_for_touch: false,
+    tip_template : function (selector, content) {
+      return '<span data-selector="' + selector + '" class="'
+        + Foundation.libs.tooltip.settings.tooltip_class.substring(1)
+        + '">' + content + '<span class="nub"></span></span>';
+    }
+  }
+});
 
+// ( "[attribute*='value']" )
+
+$("[id*='antes']").hover(function(e) {
+    console.log(e.target.id);
+    $('#' + e.target.id.replace("antes", "depois")).trigger(e.type);
+    e.preventDefault();
+});

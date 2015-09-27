@@ -26,6 +26,11 @@ body {
 .partido{
   display: inline-block;
   height: 30px;
+  opacity: 0.8;
+}
+
+.partido:hover {
+  opacity: 1;
 }
 
 .PPDPSD,.PSD,.PPD{
@@ -142,4 +147,19 @@ body {
   transition:.5s;
 }
 
+span.tooltip > span.nub {
+  top: -8px;
+}
+
+/*
+.PPDPSD:hover {
+  background-color: rgba(247, 148, 30, 1);
+  -o-transition:.5s;
+  -ms-transition:.5s;
+  -moz-transition:.5s;
+  -webkit-transition:.5s;
+  transition:.5s;
+}
+
+*/
 
