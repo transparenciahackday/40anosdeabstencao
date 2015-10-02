@@ -34,11 +34,11 @@ gulp.task('scripts',function(){
     paths.bower + '/jquery/dist/jquery.js',
     paths.bower + '/foundation/js/foundation.js',
     paths.bower + '/foundation/js/foundation/foundation.tooltip.js',
-      paths.bower + '/foundation/js/foundation/foundation.magellan.js',
     paths.assets + '/scripts/app.js'
   ])
   .pipe(concat('app.js'))
-  .pipe(gulp.dest(paths.dev + '/js'));
+  .pipe(gulp.dest(paths.dev + '/js'))
+  .pipe(browserSync.stream());
 
   return gulp.src(paths.bower + '/modernizr/modernizr.js')
     .pipe(gulp.dest(paths.dev + '/js'));
@@ -69,7 +69,7 @@ gulp.task('images',function(){
   .pipe(gulp.dest(paths.dev + '/images'));
 })
 
-gulp.task('js-watch', ['scripts'], browserSync.reload);
+gulp.task('js-watch', ['scripts']);
 
 gulp.task('copyPublicHTML',function () {
     return gulp.src(paths.assets + '/**/*.html').pipe(gulp.dest(paths.dev));
@@ -141,7 +141,6 @@ gulp.task('build',['buildFinalHTML'],function(){
       paths.bower + '/jquery/dist/jquery.js',
       paths.bower + '/foundation/js/foundation.js',
       paths.bower + '/foundation/js/foundation/foundation.tooltip.js',
-      paths.bower + '/foundation/js/foundation/foundation.magellan.js',
       paths.assets + '/scripts/app.js'
     ])
     .pipe(concat('app.min.js'))

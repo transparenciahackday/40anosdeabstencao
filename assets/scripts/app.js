@@ -244,9 +244,11 @@ var resultados = {
 
 var addResultados = function(ano){
   var rObject = resultados[ano];
+
+  // antes
   for(var partido in rObject.partidos){
     var resultado = rObject.partidos[partido];
-    var percentagem = (resultado/rObject.votantes)*99;
+    var percentagem = (resultado/rObject.votantes)*100;
     var partidoCSS = partido.replace("/","").replace("-","");
     $("#antes"+ano+"Graph").append( "<span id='antes-"+ano+partidoCSS+"' data-tooltip aria-haspopup='true' title='" + partido + ": "+ percentagem.toFixed(2)+"%' class='has-tip partido "+partidoCSS+"' style='width:"+percentagem+"%;'></span>" );
     $("#antes"+ano+"Info").append( "<div class='label " + partidoCSS + "'>" + partido + ": "+ percentagem.toFixed(2)+"%</div>" );
@@ -258,11 +260,12 @@ var addResultados = function(ano){
   $("#antes"+ano+"Graph").append( "<span id='antes-"+ano+"nulos' data-tooltip aria-haspopup='true' title='Nulos: "+ percentagem.toFixed(2)+"%' class='has-tip partido nulos' style='width:"+percentagem+"%;'></span>" );
   $("#antes"+ano+"Info").append( "<div class='label nulos'>Nulos: "+ percentagem.toFixed(2)+"%</div>" );;
 
+  // depois
   for(var partido in rObject.partidos){
     var resultado = rObject.partidos[partido];
     var percentagem = (resultado/rObject.total)*100;
     var partidoCSS = partido.replace("/","").replace("-","");
-    $("#depois"+ano+"Graph").append( "<span id='depois-"+ano+partidoCSS+"' data-tooltip aria-haspopup='true' title='" + partido + ": "+ percentagem.toFixed(2)+"%' class='has-tip partido "+partidoCSS+"' style='width:"+percentagem+"%;'></span>" );
+    $("#depois"+ano+"Graph").append( "<span id='depois-"+ano+partidoCSS+"' data-tooltip aria-haspopup='true' title='" + partido + ": "+ percentagem.toFixed(2)+"%' class='has-tip depois-"+ano+partidoCSS+" partido "+partidoCSS+"' style='width:"+percentagem+"%;'></span>" );
     $("#depois"+ano+"Info").append( "<div class='label " + partidoCSS + "'>" + partido + ": "+ percentagem.toFixed(2)+"%???</div>" );
   }
   percentagem = (rObject.brancos/rObject.total)*100;
@@ -315,10 +318,29 @@ $('.anoGraph').foundation({
   }
 });
 
-// ( "[attribute*='value']" )
+var antes = 0;
+var depois = 0;
+$("[id^='antes-']").hover(function(e){
+  if(depois == 1){ depois = 0; }
+  else{
+    var depoisID = '#' + e.target.id.replace("antes", "depois");
+    antes = 1;
+    $(depoisID).trigger(e.type);
+  }
+});
 
-$("[id*='antes']").hover(function(e) {
-    console.log(e.target.id);
-    $('#' + e.target.id.replace("antes", "depois")).trigger(e.type);
-    e.preventDefault();
+$("[id^='depois-']").hover(function(e){
+  if(antes == 1){ antes = 0; }
+  else{
+    var antesID = '#' + e.target.id.replace("depois", "antes");
+    depois = 1;
+    $(antesID).trigger(e.type);
+  }
+});
+
+$("[id^='antes-']").mouseleave(function(e){
+  antes = 0; depois = 0;
+});
+$("[id^='depois-']").mouseleave(function(e){
+  antes = 0; depois = 0;
 });
