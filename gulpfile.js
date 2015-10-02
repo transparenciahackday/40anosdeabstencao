@@ -37,10 +37,9 @@ gulp.task('scripts',function(){
     paths.assets + '/scripts/app.js'
   ])
   .pipe(concat('app.js'))
-  .pipe(gulp.dest(paths.dev + '/js'))
-  .pipe(browserSync.stream());
+  .pipe(gulp.dest(paths.dev + '/js'));
 
-  return gulp.src(paths.bower + '/modernizr/modernizr.js')
+  return gulp.src(paths.bower + '/foundation/js/vendor/modernizr.js')
     .pipe(gulp.dest(paths.dev + '/js'));
 })
 
@@ -69,7 +68,9 @@ gulp.task('images',function(){
   .pipe(gulp.dest(paths.dev + '/images'));
 })
 
-gulp.task('js-watch', ['scripts']);
+gulp.task('js-watch', ['scripts'], function(){
+  browserSync.reload();
+});
 
 gulp.task('copyPublicHTML',function () {
     return gulp.src(paths.assets + '/**/*.html').pipe(gulp.dest(paths.dev));
@@ -147,7 +148,7 @@ gulp.task('build',['buildFinalHTML'],function(){
     .pipe(uglify())
     .pipe(gulp.dest('./build/js'));
 
-    return gulp.src(paths.bower + '/modernizr/modernizr.js')
+    return gulp.src(paths.bower + '/foundation/js/vendor/modernizr.js')
       .pipe(gulp.dest('./build/js'));
 
 });
