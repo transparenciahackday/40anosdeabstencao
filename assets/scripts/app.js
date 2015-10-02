@@ -280,27 +280,37 @@ var addResultados = function(ano){
   $("#depois"+ano+"Info").append( "<div class='label abstencao'>Abstenção: "+ percentagem.toFixed(2)+"%</div>" );
 };
 
-for(ano in resultados){
+var anos = [];
+for (ano in resultados)
+{
+    if (resultados.hasOwnProperty(ano))
+    {
+        anos.push(ano);
+    }
+}
+anos.sort().reverse();
+
+for (i = 0; i < anos.length; i++){
   $("#container").append('\
     <div class="row">\
       <div class="hide">\
           <div class="small-5 columns text-center">&nbsp;</div>\
-          <div class="small-2 columns text-center label round anoLabel">'+ano+'</div>\
+          <div class="small-2 columns text-center label round anoLabel">'+anos[i]+'</div>\
           <div class="small-5 columns text-center">&nbsp;</div>\
       </div>\
       <div class="row">\
-          <div class="small-5 columns text-right right-border anoGraph" id="antes'+ano+'Graph"></div>\
-          <div class="small-1 columns text-center label round anoLabel"><span>'+ano+'</span></div>\
-          <div class="small-5 columns text-left left-border anoGraph" id="depois'+ano+'Graph"></div>\
+          <div class="small-5 columns text-right right-border anoGraph" id="antes'+anos[i]+'Graph"></div>\
+          <div class="small-1 columns text-center label round anoLabel"><span>'+anos[i]+'</span></div>\
+          <div class="small-5 columns text-left left-border anoGraph" id="depois'+anos[i]+'Graph"></div>\
       </div>\
       <div class="hide">\
-          <div class="small-5 columns text-center right-border anoInfo" id="antes'+ano+'Info">\
+          <div class="small-5 columns text-center right-border anoInfo" id="antes'+anos[i]+'Info">\
           </div>\
-          <div class="small-5 columns text-center left-border anoInfo" id="depois'+ano+'Info">\
+          <div class="small-5 columns text-center left-border anoInfo" id="depois'+anos[i]+'Info">\
           </div>\
       </div>\
     </div>');
-  addResultados(ano);
+  addResultados(anos[i]);
 }
 
 $('.anoGraph').foundation({
