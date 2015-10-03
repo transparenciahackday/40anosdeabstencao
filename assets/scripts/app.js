@@ -244,9 +244,11 @@ var resultados = {
 
 var addResultados = function(ano){
   var rObject = resultados[ano];
+
+  // antes
   for(var partido in rObject.partidos){
     var resultado = rObject.partidos[partido];
-    var percentagem = (resultado/rObject.votantes)*99;
+    var percentagem = (resultado/rObject.votantes)*100;
     var partidoCSS = partido.replace("/","").replace("-","");
     $("#antes"+ano+"Graph").append( "<span id='antes-"+ano+partidoCSS+"' data-tooltip aria-haspopup='true' title='" + partido + ": "+ percentagem.toFixed(2)+"%' class='has-tip partido "+partidoCSS+"' style='width:"+percentagem+"%;'></span>" );
     $("#antes"+ano+"Info").append( "<div class='label " + partidoCSS + "'>" + partido + ": "+ percentagem.toFixed(2)+"%</div>" );
@@ -258,11 +260,12 @@ var addResultados = function(ano){
   $("#antes"+ano+"Graph").append( "<span id='antes-"+ano+"nulos' data-tooltip aria-haspopup='true' title='Nulos: "+ percentagem.toFixed(2)+"%' class='has-tip partido nulos' style='width:"+percentagem+"%;'></span>" );
   $("#antes"+ano+"Info").append( "<div class='label nulos'>Nulos: "+ percentagem.toFixed(2)+"%</div>" );;
 
+  // depois
   for(var partido in rObject.partidos){
     var resultado = rObject.partidos[partido];
     var percentagem = (resultado/rObject.total)*100;
     var partidoCSS = partido.replace("/","").replace("-","");
-    $("#depois"+ano+"Graph").append( "<span id='depois-"+ano+partidoCSS+"' data-tooltip aria-haspopup='true' title='" + partido + ": "+ percentagem.toFixed(2)+"%' class='has-tip partido "+partidoCSS+"' style='width:"+percentagem+"%;'></span>" );
+    $("#depois"+ano+"Graph").append( "<span id='depois-"+ano+partidoCSS+"' data-tooltip aria-haspopup='true' title='" + partido + ": "+ percentagem.toFixed(2)+"%' class='has-tip depois-"+ano+partidoCSS+" partido "+partidoCSS+"' style='width:"+percentagem+"%;'></span>" );
     $("#depois"+ano+"Info").append( "<div class='label " + partidoCSS + "'>" + partido + ": "+ percentagem.toFixed(2)+"%???</div>" );
   }
   percentagem = (rObject.brancos/rObject.total)*100;
@@ -277,27 +280,37 @@ var addResultados = function(ano){
   $("#depois"+ano+"Info").append( "<div class='label abstencao'>Abstenção: "+ percentagem.toFixed(2)+"%</div>" );
 };
 
-for(ano in resultados){
+var anos = [];
+for (ano in resultados)
+{
+    if (resultados.hasOwnProperty(ano))
+    {
+        anos.push(ano);
+    }
+}
+anos.sort().reverse();
+
+for (i = 0; i < anos.length; i++){
   $("#container").append('\
     <div class="row">\
       <div class="hide">\
           <div class="small-5 columns text-center">&nbsp;</div>\
-          <div class="small-2 columns text-center label round anoLabel">'+ano+'</div>\
+          <div class="small-2 columns text-center label round anoLabel">'+anos[i]+'</div>\
           <div class="small-5 columns text-center">&nbsp;</div>\
       </div>\
       <div class="row">\
-          <div class="small-5 columns text-right right-border anoGraph" id="antes'+ano+'Graph"></div>\
-          <div class="small-1 columns text-center label round anoLabel"><span>'+ano+'</span></div>\
-          <div class="small-5 columns text-left left-border anoGraph" id="depois'+ano+'Graph"></div>\
+          <div class="small-5 columns text-right right-border anoGraph" id="antes'+anos[i]+'Graph"></div>\
+          <div class="small-1 columns text-center label round anoLabel"><span>'+anos[i]+'</span></div>\
+          <div class="small-5 columns text-left left-border anoGraph" id="depois'+anos[i]+'Graph"></div>\
       </div>\
       <div class="hide">\
-          <div class="small-5 columns text-center right-border anoInfo" id="antes'+ano+'Info">\
+          <div class="small-5 columns text-center right-border anoInfo" id="antes'+anos[i]+'Info">\
           </div>\
-          <div class="small-5 columns text-center left-border anoInfo" id="depois'+ano+'Info">\
+          <div class="small-5 columns text-center left-border anoInfo" id="depois'+anos[i]+'Info">\
           </div>\
       </div>\
     </div>');
-  addResultados(ano);
+  addResultados(anos[i]);
 }
 
 $('.anoGraph').foundation({
@@ -316,28 +329,31 @@ $('.anoGraph').foundation({
   }
 });
 
-// ( "[attribute*='value']" )
+var antes = 0;
+var depois = 0;
+$("[id^='antes-']").hover(function(e){
+  if(depois == 1){ depois = 0; }
+  else{
+    var depoisID = '#' + e.target.id.replace("antes", "depois");
+    antes = 1;
+    $(depoisID).trigger(e.type);
+  }
+});
 
-$("[id*='antes']").hover(function(e) {
-  if ($(e.target.id) == $('[id*="Graph"]')) {
-    console.log("nops");
-  } else {
-    console.log(e.target.id);
-    $('#' + e.target.id.replace("antes", "depois")).trigger(e.type);
-    e.preventDefault();
-  };
+$("[id^='depois-']").hover(function(e){
+  if(antes == 1){ antes = 0; }
+  else{
+    var antesID = '#' + e.target.id.replace("depois", "antes");
+    depois = 1;
+    $(antesID).trigger(e.type);
+  }
 });
-/*
-$("[id*='antes']").hover(function(e) {
-  $('#' + e.target.id.replace("antes", "depois")).toggleClass("pim");
-});
-*/
 
-/*
-$("[id*='depois']").hover(function(e) {
-  console.log(e.target.id);
-  $('#' + e.target.id.replace("depois", "antes")).trigger(e.type);
-  e.preventDefault();
+$("[id^='antes-']").mouseleave(function(e){
+  antes = 0; depois = 0;
 });
-*/
+$("[id^='depois-']").mouseleave(function(e){
+  antes = 0; depois = 0;
+});
+
 
