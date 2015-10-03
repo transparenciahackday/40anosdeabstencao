@@ -151,9 +151,11 @@ body {
       }
     }
   
-  .credits li {
-    list-style-type: none;
-    
+  .credits {
+    padding-bottom: 0.75rem;
+    li {
+      list-style-type: none;
+    }
     a {
       font-weight: bold;
       }
