@@ -6,6 +6,7 @@ var minifyCss = require('gulp-minify-css');
 var uglify = require('gulp-uglify');
 var inject = require('gulp-inject');
 var runSequence = require('run-sequence');
+var ghPages = require('gulp-gh-pages');
 
 var paths = {
   'assets':'./assets',
@@ -162,3 +163,9 @@ gulp.task('build',['buildFinalHTML'],function(){
       .pipe(gulp.dest('./build/js'));
 
 });
+
+gulp.task('deploy', function() {
+  return gulp.src("./build/**/*")
+    .pipe(ghPages());
+});
+
