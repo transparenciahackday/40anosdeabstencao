@@ -1,13 +1,23 @@
-@import 'foundation/settings';
-@import 'foundation';
-
 /* Type
 */
 
 @font-face {
   font-family: 'Cinzel';
-  src: local('Cinzel'), url('../fonts/Cinzel/Cinzel-Bold.ttf') format('truetype');
-}
+  src: local('Cinzel'), url('../fonts/Cinzel/Cinzel-Bold.ttf') format('truetype'); }
+
+@font-face {
+  font-family: 'Oxygen';
+  font-weight: normal;
+  src: local('Oxygen'), url('../fonts/Oxygen/Oxygen-Regular.ttf') format('truetype'); }
+  
+@font-face {
+  font-family: 'Oxygen';
+  font-weight: bold;
+  src: local('Oxygen'), url('../fonts/Oxygen/Oxygen-Bold.ttf') format('truetype'); }
+
+
+@import 'foundation/settings';
+@import 'foundation';
 
 h1,
 #footer p strong { font-family: 'Cinzel', Georgia, Times, serif; }
@@ -114,7 +124,10 @@ body {
     }
 }
 
-span.tooltip > span.nub { top: -8px; }
+.tooltip {
+  font-weight: bold;
+  span.nub { top: -8px; }  
+}
 
 .has-tip { cursor: inherit; }
 

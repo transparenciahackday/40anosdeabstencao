@@ -305,7 +305,6 @@ $('.anoGraph').foundation({
     selector : '.has-tip',
     additional_inheritable_classes : [],
     tooltip_class : '.tooltip',
-    tooltip_toggleclass: '.active',
     touch_close_text: 'tap to close',
     disable_for_touch: false,
     tip_template : function (selector, content) {
