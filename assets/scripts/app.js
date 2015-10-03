@@ -303,8 +303,9 @@ for(ano in resultados){
 $('.anoGraph').foundation({
   tooltip: {
     selector : '.has-tip',
-    additional_inheritable_classes : [],
+    additional_inheritable_classes : ['.testing'],
     tooltip_class : '.tooltip',
+    tooltip_toggleclass: '.active',
     touch_close_text: 'tap to close',
     disable_for_touch: false,
     tip_template : function (selector, content) {
@@ -318,7 +319,25 @@ $('.anoGraph').foundation({
 // ( "[attribute*='value']" )
 
 $("[id*='antes']").hover(function(e) {
+  if ($(e.target.id) == $('[id*="Graph"]')) {
+    console.log("nops");
+  } else {
     console.log(e.target.id);
     $('#' + e.target.id.replace("antes", "depois")).trigger(e.type);
     e.preventDefault();
+  };
 });
+/*
+$("[id*='antes']").hover(function(e) {
+  $('#' + e.target.id.replace("antes", "depois")).toggleClass("pim");
+});
+*/
+
+/*
+$("[id*='depois']").hover(function(e) {
+  console.log(e.target.id);
+  $('#' + e.target.id.replace("depois", "antes")).trigger(e.type);
+  e.preventDefault();
+});
+*/
+
