@@ -293,22 +293,9 @@ anos.sort().reverse();
 for (i = 0; i < anos.length; i++){
   $("#container").append('\
     <div class="row">\
-      <div class="hide">\
-          <div class="small-5 columns text-center">&nbsp;</div>\
-          <div class="small-2 columns text-center label round anoLabel">'+anos[i]+'</div>\
-          <div class="small-5 columns text-center">&nbsp;</div>\
-      </div>\
-      <div class="row">\
           <div class="small-5 columns text-right right-border anoGraph" id="antes'+anos[i]+'Graph"></div>\
           <div class="small-1 columns text-center label round anoLabel"><span>'+anos[i]+'</span></div>\
           <div class="small-5 columns text-left left-border anoGraph" id="depois'+anos[i]+'Graph"></div>\
-      </div>\
-      <div class="hide">\
-          <div class="small-5 columns text-center right-border anoInfo" id="antes'+anos[i]+'Info">\
-          </div>\
-          <div class="small-5 columns text-center left-border anoInfo" id="depois'+anos[i]+'Info">\
-          </div>\
-      </div>\
     </div>');
   addResultados(anos[i]);
 }
@@ -316,7 +303,7 @@ for (i = 0; i < anos.length; i++){
 $('.anoGraph').foundation({
   tooltip: {
     selector : '.has-tip',
-    additional_inheritable_classes : ['.testing'],
+    additional_inheritable_classes : [],
     tooltip_class : '.tooltip',
     tooltip_toggleclass: '.active',
     touch_close_text: 'tap to close',
@@ -336,7 +323,7 @@ $("[id^='antes-']").hover(function(e){
   else{
     var depoisID = '#' + e.target.id.replace("antes", "depois");
     antes = 1;
-    $(depoisID).trigger(e.type);
+    $(depoisID).toggleClass('highlight').trigger(e.type);
   }
 });
 
@@ -345,7 +332,7 @@ $("[id^='depois-']").hover(function(e){
   else{
     var antesID = '#' + e.target.id.replace("depois", "antes");
     depois = 1;
-    $(antesID).trigger(e.type);
+    $(antesID).toggleClass('highlight').trigger(e.type);
   }
 });
 

@@ -5,11 +5,12 @@
 */
 
 @font-face {
-    font-family: 'Playfair SC';
-    src: local('Playfair SC'), url('../fonts/Playfair_Display_SC/PlayfairDisplaySC-Regular.ttf') format('truetype');
+  font-family: 'Cinzel';
+  src: local('Cinzel'), url('../fonts/Cinzel/Cinzel-Bold.ttf') format('truetype');
 }
 
-h1 { font-family: 'Playfair SC', Georgia, Times, serif; }
+h1,
+#footer p strong { font-family: 'Cinzel', Georgia, Times, serif; }
 
 .row h4 {
   font-size: 1rem;
@@ -21,153 +22,132 @@ body {
   background-color: #eee;
 }
 
+#header {
+  padding: 1rem 0 0.5rem;
+}
+
 .hide { display: none; }
 
 .partido{
   display: inline-block;
   height: 30px;
-  opacity: 0.5;
+  opacity: 0.7;
 }
 
 .partido:hover,
-.pim {
+.highlight {
   opacity: 1;
+  -o-transition:.5s;
+  -ms-transition:.5s;
+  -moz-transition:.5s;
+  -webkit-transition:.5s;
+  transition:.5s;
 }
 
-.PPDPSD,.PSD,.PPD{
-  background-color: #f7941e;
-}
+.PPDPSD,.PSD,.PPD { background-color: #f7941e; }
 
-.PS{
-  background-color: #feaaaa;
-}
+.PS { background-color: #feaaaa; }
 
-.PCPPEV,.CDU,.PCP{
-  background-color: #da251e;
-}
+.PCPPEV,.CDU,.PCP { background-color: #da251e; }
 
-.CDSPP,.CDS{
-  background-color: #0093dd;
-}
+.CDSPP,.CDS { background-color: #0093dd; }
 
-.BE{
-  background-color: #c90535;
-}
+.BE { background-color: #c90535; }
 
-.PCTPMRPP{
-  background-color: #ef4035;
-}
+.PCTPMRPP { background-color: #ef4035; }
 
-.PSN{
-  background-color: #1b256d;
-}
+.PSN { background-color: #1b256d; }
 
-.PRD{
-  background-color: #216b31;
-}
+.PRD { background-color: #216b31; }
 
-.APU{
-  background-color: #ff5d61;
-}
+.APU { background-color: #ff5d61; }
 
-.PDC{
-  background-color: #050505;
-}
+.PDC { background-color: #050505; }
 
-.AD{
-  background-color: #00ffff;
-}
+.AD { background-color: #00ffff; }
 
-.FRS{
-  background-color: #ff0000;
-}
+.FRS { background-color: #ff0000; }
 
-.UDP{
-  background-color: #ff0000;
-}
+.UDP { background-color: #ff0000; }
 
-.MDP{
-  background-color: #c83019;
-}
+.MDP { background-color: #c83019; }
 
-.Outros{
-  background-color: black;
-}
+.Outros { background-color: black; }
 
-.abstencao{
-  background-color: #ccc;
-}
-.brancos{
-  background-color: #888;
-}
-.nulos{
-  background-color: #aaa;
-}
+.abstencao { background-color: #ccc; }
+.brancos { background-color: #888; }
+.nulos { background-color: #aaa; }
 
-.vs{
+.vs {
   line-height: 1.4;
 }
-.left-border{
-  border-left: 1px solid #ccc;
-}
-.right-border{
-  border-right: 1px solid #ccc;
-}
+
+.left-border { /*  border-left: 1px solid #ccc;*/ }
+
+.right-border { /*  border-right: 1px solid #ccc;*/ }
 
 .anoLabel{
   font-size: 1rem;
   background-color: transparent;
   color: #333;
-/*  font-size: 1.6rem;
-  padding: 10px;
-  background-color: #333;
-  margin-top: 5px;
-  margin-bottom: 5px;
-  */
 }
 
-.anoGraph{
-/*  padding-top: 25px;*/
-}
-.anoInfo{
-/*  padding-bottom: 50px;*/
-}
-
-#container .row > .row:hover {
-   background-color: #fff;
-}
-
-#container .row > .row {
-  line-height: 1;
-  padding-top: 0.9375rem;
-  padding-bottom: 0.9375rem;
-  -o-transition:.5s;
-  -ms-transition:.5s;
-  -moz-transition:.5s;
-  -webkit-transition:.5s;
-  transition:.5s;
-}
-
-span.tooltip > span.nub {
-  top: -8px;
-}
-
-.has-tip{
-  cursor: inherit;
-}
+.anoGraph { }
+.anoInfo { }
 
 #container{
   margin-bottom: 50px;
+  
+  .row:hover {
+    background-color: #fff;
+    }
+
+  .row {
+    line-height: 1;
+    padding-top: 0.9375rem;
+    padding-bottom: 0.9375rem;
+    -o-transition:.5s;
+    -ms-transition:.5s;
+    -moz-transition:.5s;
+    -webkit-transition:.5s;
+    transition:.5s;
+    }
 }
 
-/*
-.PPDPSD:hover {
-  background-color: rgba(247, 148, 30, 1);
-  -o-transition:.5s;
-  -ms-transition:.5s;
-  -moz-transition:.5s;
-  -webkit-transition:.5s;
-  transition:.5s;
+span.tooltip > span.nub { top: -8px; }
+
+.has-tip { cursor: inherit; }
+
+#footer {
+  padding: 0.5rem 0 1.5rem;
+  border-top: 1px solid #ccc;
+  
+  p {
+    margin-bottom: 0.5rem;
+    }
+  
+  p:first-child {
+    padding-top: 1.25rem;
+    
+    a {
+      display: inline-block;
+      img {
+        height: 22px;
+        width: auto;
+        }
+      }
+    }
+  
+  .credits li {
+    list-style-type: none;
+    
+    a {
+      font-weight: bold;
+      }
+    }
+  
 }
 
-*/
+
+
+
