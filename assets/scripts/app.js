@@ -11,7 +11,7 @@ var resultados2011 = {
     "PPD/PSD":2159181,
     "PS":1566347,
     "CDS-PP":653888,
-    "PCP-PEV":441147,
+    "CDU":441147,
     "BE":288923,
     "Outros": 247126
   }
@@ -28,7 +28,7 @@ var resultados2009 = {
     "PSD": 1653665,
     "CDS-PP": 592778,
     "BE": 557306,
-    "PCP-PEV": 446279,
+    "CDU": 446279,
     "Outros": 178012
   }
 };
@@ -42,7 +42,7 @@ var resultados2005 = {
   partidos: {
     "PS": 2588312,
     "PPD/PSD": 1653425,
-    "PCP-PEV": 433369,
+    "CDU": 433369,
     "CDS-PP": 416415,
     "BE":364971,
     "Outros": 122127
@@ -59,7 +59,7 @@ var resultados2002 = {
     "PPD/PSD": 2200765,
     "PS": 2068584,
     "CDS-PP": 477350,
-    "PCP-PEV": 379870,
+    "CDU": 379870,
     "BE": 149966,
     "Outros": 88542
   }
@@ -74,7 +74,7 @@ var resultados1999 = {
   partidos: {
     "PS": 2385922,
     "PPD/PSD": 1750158,
-    "PCP-PEV": 487058,
+    "CDU": 487058,
     "CDS-PP": 451643,
     "BE": 132333,
     "Outros": 99842
@@ -91,7 +91,7 @@ var resultados1995 = {
     "PS": 2583755,
     "PPD/PSD": 2014589,
     "CDS-PP": 534470,
-    "PCP-PEV": 506157,
+    "CDU": 506157,
     "PCTP/MRPP": 41137,
     "Outros": 111653
   }
@@ -106,7 +106,7 @@ var resultados1991 = {
   partidos: {
     "PPD/PSD": 2902351,
     "PS": 1670758,
-    "PCP-PEV": 504583,
+    "CDU": 504583,
     "CDS": 254317,
     "PSN":	96096,
     "Outros": 196654
@@ -341,5 +341,3 @@ $("[id^='antes-']").mouseleave(function(e){
 $("[id^='depois-']").mouseleave(function(e){
   antes = 0; depois = 0;
 });
-
-
