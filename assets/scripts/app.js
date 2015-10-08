@@ -1,6 +1,21 @@
 
 $(document).foundation();
 
+var resultados2015 = {
+  total: 9439711,
+  abstencao: 4059465,
+  votantes: 5380246,
+  brancos: 112658,
+  nulos: 86467,
+  partidos: {
+    "PaF": 1981408,
+    "PS": 1742002,
+    "BE": 549838,
+    "CDU": 444905,
+    "Outros": 462968
+  }
+};
+
 var resultados2011 = {
   total: 9624354,
   abstencao: 4039300,
@@ -226,6 +241,7 @@ var resultados1975 = {
 };
 
 var resultados = {
+  "2015": resultados2015,
   "2011": resultados2011,
   "2009": resultados2009,
   "2005": resultados2005,
