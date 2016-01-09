@@ -9,7 +9,7 @@
   font-family: 'Oxygen';
   font-weight: normal;
   src: local('Oxygen'), url('../fonts/Oxygen/Oxygen-Regular.ttf') format('truetype'); }
-  
+
 @font-face {
   font-family: 'Oxygen';
   font-weight: bold;
@@ -52,6 +52,17 @@ body {
   -moz-transition:.5s;
   -webkit-transition:.5s;
   transition:.5s;
+}
+
+.PaF {
+  background-color: #f7941e; /* fallback */
+  background: repeating-linear-gradient(
+    45deg,
+    #f7941e,
+    #f7941e 10px,
+    #0093dd 10px,
+    #0093dd 20px
+  );
 }
 
 .PPDPSD,.PSD,.PPD { background-color: #f7941e; }
@@ -107,7 +118,7 @@ body {
 
 #container{
   margin-bottom: 50px;
-  
+
   .row:hover {
     background-color: #fff;
     }
@@ -126,7 +137,7 @@ body {
 
 .tooltip {
   font-weight: bold;
-  span.nub { top: -8px; }  
+  span.nub { top: -8px; }
 }
 
 .has-tip { cursor: inherit; }
@@ -134,14 +145,14 @@ body {
 #footer {
   padding: 0.5rem 0 1.5rem;
   border-top: 1px solid #ccc;
-  
+
   p {
     margin-bottom: 0.5rem;
     }
-  
+
   p:first-child {
     padding-top: 1.25rem;
-    
+
     a {
       display: inline-block;
       img {
@@ -150,7 +161,7 @@ body {
         }
       }
     }
-  
+
   .credits {
     padding-bottom: 0.75rem;
     li {
@@ -160,9 +171,5 @@ body {
       font-weight: bold;
       }
     }
-  
+
 }
-
-
-
-
