@@ -1,6 +1,6 @@
 # 40 Anos de Abstenção
 
-Uma visualização da abstenção, nas eleições legislativas em Portugal, entre 1975 e 20.
+Uma visualização da abstenção, nas eleições legislativas em Portugal, entre 1975 e 2015.
 
 A correr em [tmmv.github.io/abstencao](https://tmmv.github.io/abstencao).
 
